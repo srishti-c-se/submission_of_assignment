@@ -1,0 +1,31 @@
+Designing a database for an enterprise
+- Create an accurate representation of data
+- Relationships between the data
+- Constraints on the data
+
+Techniques:
+- Entity Relationship (ER) Modelling
+- Normalisation (Lossless decomposition)
+
+After analyzing the values inserted in table BCM_ORDER_MGT, i made the assumptions written on the sql script.
+
+ERD Relationships & Cardinality
+SUPPLIERS (1) → (M) ORDERS
+
+One-to-Many (1:M): A supplier can have multiple orders, but each order belongs to only one supplier.
+ORDERS (1) → (M) ORDER_LINE
+
+One-to-Many (1:M): Each order consists of multiple order lines, but an order line belongs to only one order.
+ORDER_LINE (M) → (M) INVOICE
+
+Many-to-Many (M:M): An order line can be associated with multiple invoices (partial payments possible), and an invoice can be associated with multiple order lines.
+INVOICE (1) → (M) INVOICE_ORDERS
+
+One-to-Many (1:M): One invoice can have multiple order lines mapped via the INVOICE_ORDERS table.
+
+DBMS used:
+SQL server
+
+-- Creating new database
+-- dtb customizes prefix for database name
+CREATE DATABASE dtb_MCB_Assignment;
